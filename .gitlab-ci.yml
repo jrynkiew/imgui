@@ -9,8 +9,8 @@ build-web:
     - web-runner
   stage: build-all
   script:
-    - cd examples/example_null
-    - make
+    - cd examples/example_sdl2_opengl3
+    - make -f Makefile.emscripten
   
 build-windows:
   variables:
@@ -21,7 +21,7 @@ build-windows:
     - windows-runner
   stage: build-all
   script:
-    - cd examples/example_null
+    - cd examples/example_sdl2_opengl3
     - make
 
 build-windows32:
@@ -33,10 +33,14 @@ build-windows32:
     - windows32-runner
   stage: build-all
   script:
-    - cd examples/example_null
+    - cd examples/example_sdl2_opengl3
     - make
 
 build-linux:
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - imgui/linux
   variables:
     BUILD_TARGET: linux
     GIT_STRATEGY: clone
@@ -44,5 +48,5 @@ build-linux:
     - linux-runner
   stage: build-all
   script:
-    - cd examples/example_null
+    - cd examples/example_sdl2_opengl3
     - make
