@@ -65,6 +65,7 @@ run-web-server:
     - web-server
   stage: deploy
   script:
+    - mkdir -p /usr/share/nginx/html/demo
     - cp examples/example_sdl2_opengl3/web/* /usr/share/nginx/html/demo/
   needs:
     - job: build-web
