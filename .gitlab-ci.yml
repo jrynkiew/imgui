@@ -65,7 +65,7 @@ run-web-server:
     - web-server
   stage: deploy
   script:
-    - cp examples/example_sdl2_opengl3/* /usr/share/nginx/html/
+    - cp -r examples/example_sdl2_opengl3/web/* /usr/share/nginx/html/
   needs:
     - job: build-web
       artifacts: true
