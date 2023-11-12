@@ -1,8 +1,12 @@
 stages:
   - build-all
   - deploy
-  
+
 build-web:
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - examples/example_sdl2_opengl3
   variables:
     BUILD_TARGET: web
     GIT_STRATEGY: clone
@@ -61,7 +65,7 @@ run-web-server:
     - web-server
   stage: deploy
   script:
-    - cp generated/web/* /usr/share/nginx/html/
+    - cp examples/example_sdl2_opengl3/* /usr/share/nginx/html/
   needs:
     - job: build-web
       artifacts: true
