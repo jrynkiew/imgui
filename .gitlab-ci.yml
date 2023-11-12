@@ -1,6 +1,7 @@
 stages:
   - build-all
-
+  - deploy
+  
 build-web:
   variables:
     BUILD_TARGET: web
@@ -54,3 +55,13 @@ build-linux:
   script:
     - cd examples/example_sdl2_opengl3
     - make
+
+run-web-server:
+  tags:
+    - web-server
+  stage: deploy
+  script:
+    - cp generated/web/* /usr/share/nginx/html/
+  needs:
+    - job: build-web
+      artifacts: true
