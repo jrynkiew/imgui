@@ -10,6 +10,10 @@ build-web:
   stage: build-all
   script:
     - cd examples/example_sdl2_opengl3
+    - export PWD_WEB=$PWD
+    - cd /build/emsdk/
+    - . ./emsdk_env.sh
+    - cd $PWD_WEB
     - make -f Makefile.emscripten
   
 build-windows:
