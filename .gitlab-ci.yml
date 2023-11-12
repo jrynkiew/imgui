@@ -1,0 +1,48 @@
+stages:
+  - build-all
+
+build-web:
+  variables:
+    BUILD_TARGET: web
+    GIT_STRATEGY: clone
+  tags:
+    - web-runner
+  stage: build-all
+  script:
+    - cd examples/example_null
+    - make
+  
+build-windows:
+  variables:
+    BUILD_TARGET: windows
+    GIT_STRATEGY: clone
+    MINGW: /mingw64
+  tags:
+    - windows-runner
+  stage: build-all
+  script:
+    - cd examples/example_null
+    - make
+
+build-windows32:
+  variables:
+    BUILD_TARGET: windows
+    GIT_STRATEGY: clone
+    MINGW: /mingw64
+  tags:
+    - windows32-runner
+  stage: build-all
+  script:
+    - cd examples/example_null
+    - make
+
+build-linux:
+  variables:
+    BUILD_TARGET: linux
+    GIT_STRATEGY: clone
+  tags:
+    - linux-runner
+  stage: build-all
+  script:
+    - cd examples/example_null
+    - make
