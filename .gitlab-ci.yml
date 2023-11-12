@@ -21,7 +21,7 @@ build-windows:
     - windows-runner
   stage: build-all
   script:
-    - cd examples/example_sdl2_opengl3
+    - cd examples/example_null
     - make
 
 build-windows32:
@@ -33,14 +33,14 @@ build-windows32:
     - windows32-runner
   stage: build-all
   script:
-    - cd examples/example_sdl2_opengl3
+    - cd examples/example_null
     - make
 
 build-linux:
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
-      - imgui/linux
+      - examples/example_sdl2_opengl3
   variables:
     BUILD_TARGET: linux
     GIT_STRATEGY: clone
