@@ -76,7 +76,7 @@ publish-source-code:
     - linux-runner
   stage: deploy
   script:
-    - mkdir -p ./publish
+    - mkdir -p ./publish/backends
     - cp -r backends/imgui_impl_opengl3.cpp ./publish/backends
     - cp -r backends/imgui_impl_opengl3.h ./publish/backends
     - cp -r backends/imgui_impl_opengl3_loader.h ./publish/backends
