@@ -70,3 +70,34 @@ run-web-server:
   needs:
     - job: build-web
       artifacts: true
+
+publish-source-code:
+  tags:
+    - linux-runner
+  stage: deploy
+  script:
+    - mkdir -p /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_opengl3.cpp /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_opengl3.h /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_opengl3_loader.h /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_glfw.cpp /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_glfw.h /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_sdl2.cpp /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_sdl2.h /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_sdlrenderer2.cpp /usr/share/imgui/backends
+    - cp -r backends/imgui_impl_sdlrenderer2.h /usr/share/imgui/backends
+    - cp -r imgui_draw.cpp /usr/share/imgui
+    - cp -r imgui_internal.h /usr/share/imgui
+    - cp -r imgui_tables.cpp /usr/share/imgui
+    - cp -r imgui_widgets.cpp /usr/share/imgui
+    - cp -r imgui_demo.cpp /usr/share/imgui
+    - cp -r imconfig.h /usr/share/imgui
+    - cp -r imgui.cpp /usr/share/imgui
+    - cp -r imgui.h /usr/share/imgui
+    - cp -r imstb_rectpack.h /usr/share/imgui
+    - cp -r imstb_textedit.h /usr/share/imgui
+    - cp -r imstb_truetype.h /usr/share/imgui
+  artifacts:
+    name: imgui
+    paths:
+      - /usr/share/imgui
