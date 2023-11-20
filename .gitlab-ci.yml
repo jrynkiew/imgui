@@ -76,29 +76,29 @@ publish-source-code:
     - linux-runner
   stage: deploy
   script:
-    - mkdir -p ./publish/backends
-    - mkdir -p ./publish/imgui
-    - cp -r backends/imgui_impl_opengl3.cpp ./publish/backends
-    - cp -r backends/imgui_impl_opengl3.h ./publish/backends
-    - cp -r backends/imgui_impl_opengl3_loader.h ./publish/backends
-    - cp -r backends/imgui_impl_glfw.cpp ./publish/backends
-    - cp -r backends/imgui_impl_glfw.h ./publish/backends
-    - cp -r backends/imgui_impl_sdl2.cpp ./publish/backends
-    - cp -r backends/imgui_impl_sdl2.h ./publish/backends
-    - cp -r backends/imgui_impl_sdlrenderer2.cpp ./publish/backends
-    - cp -r backends/imgui_impl_sdlrenderer2.h ./publish/backends
-    - cp -r imgui_draw.cpp ./publish/imgui
-    - cp -r imgui_internal.h ./publish/imgui
-    - cp -r imgui_tables.cpp ./publish/imgui
-    - cp -r imgui_widgets.cpp ./publish/imgui
-    - cp -r imgui_demo.cpp ./publish/imgui
-    - cp -r imconfig.h ./publish/imgui
-    - cp -r imgui.cpp ./publish/imgui
-    - cp -r imgui.h ./publish/imgui
-    - cp -r imstb_rectpack.h ./publish/imgui
-    - cp -r imstb_textedit.h ./publish/imgui
-    - cp -r imstb_truetype.h ./publish/imgui
+    - mkdir -p ./publish/src/backends
+    - mkdir -p ./publish/src/imgui
+    - cp -r backends/imgui_impl_opengl3.cpp ./publish/src/backends
+    - cp -r backends/imgui_impl_opengl3.h ./publish/src/backends
+    - cp -r backends/imgui_impl_opengl3_loader.h ./publish/src/backends
+    - cp -r backends/imgui_impl_glfw.cpp ./publish/src/backends
+    - cp -r backends/imgui_impl_glfw.h ./publish/src/backends
+    - cp -r backends/imgui_impl_sdl2.cpp ./publish/src/backends
+    - cp -r backends/imgui_impl_sdl2.h ./publish/src/backends
+    - cp -r backends/imgui_impl_sdlrenderer2.cpp ./publish/src/backends
+    - cp -r backends/imgui_impl_sdlrenderer2.h ./publish/src/backends
+    - cp -r imgui_draw.cpp ./publish/src/imgui
+    - cp -r imgui_internal.h ./publish/src/imgui
+    - cp -r imgui_tables.cpp ./publish/src/imgui
+    - cp -r imgui_widgets.cpp ./publish/src/imgui
+    - cp -r imgui_demo.cpp ./publish/src/imgui
+    - cp -r imconfig.h ./publish/src/imgui
+    - cp -r imgui.cpp ./publish/src/imgui
+    - cp -r imgui.h ./publish/src/imgui
+    - cp -r imstb_rectpack.h ./publish/src/imgui
+    - cp -r imstb_textedit.h ./publish/src/imgui
+    - cp -r imstb_truetype.h ./publish/src/imgui
   artifacts:
     name: "$CI_PROJECT_NAME"
     paths:
-      - ./publish
+      - ./publish/src
