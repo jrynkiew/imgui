@@ -76,28 +76,28 @@ publish-source-code:
     - linux-runner
   stage: deploy
   script:
-    - mkdir -p ~/imgui/backends
-    - cp -r backends/imgui_impl_opengl3.cpp ~/imgui/backends
-    - cp -r backends/imgui_impl_opengl3.h ~/imgui/backends
-    - cp -r backends/imgui_impl_opengl3_loader.h ~/imgui/backends
-    - cp -r backends/imgui_impl_glfw.cpp ~/imgui/backends
-    - cp -r backends/imgui_impl_glfw.h ~/imgui/backends
-    - cp -r backends/imgui_impl_sdl2.cpp ~/imgui/backends
-    - cp -r backends/imgui_impl_sdl2.h ~/imgui/backends
-    - cp -r backends/imgui_impl_sdlrenderer2.cpp ~/imgui/backends
-    - cp -r backends/imgui_impl_sdlrenderer2.h ~/imgui/backends
-    - cp -r imgui_draw.cpp ~/imgui
-    - cp -r imgui_internal.h ~/imgui
-    - cp -r imgui_tables.cpp ~/imgui
-    - cp -r imgui_widgets.cpp ~/imgui
-    - cp -r imgui_demo.cpp ~/imgui
-    - cp -r imconfig.h ~/imgui
-    - cp -r imgui.cpp ~/imgui
-    - cp -r imgui.h ~/imgui
-    - cp -r imstb_rectpack.h ~/imgui
-    - cp -r imstb_textedit.h ~/imgui
-    - cp -r imstb_truetype.h ~/imgui
+    - mkdir -p ./publish
+    - cp -r backends/imgui_impl_opengl3.cpp ./publish/backends
+    - cp -r backends/imgui_impl_opengl3.h ./publish/backends
+    - cp -r backends/imgui_impl_opengl3_loader.h ./publish/backends
+    - cp -r backends/imgui_impl_glfw.cpp ./publish/backends
+    - cp -r backends/imgui_impl_glfw.h ./publish/backends
+    - cp -r backends/imgui_impl_sdl2.cpp ./publish/backends
+    - cp -r backends/imgui_impl_sdl2.h ./publish/backends
+    - cp -r backends/imgui_impl_sdlrenderer2.cpp ./publish/backends
+    - cp -r backends/imgui_impl_sdlrenderer2.h ./publish/backends
+    - cp -r imgui_draw.cpp ./publish
+    - cp -r imgui_internal.h ./publish
+    - cp -r imgui_tables.cpp ./publish
+    - cp -r imgui_widgets.cpp ./publish
+    - cp -r imgui_demo.cpp ./publish
+    - cp -r imconfig.h ./publish
+    - cp -r imgui.cpp ./publish
+    - cp -r imgui.h ./publish
+    - cp -r imstb_rectpack.h ./publish
+    - cp -r imstb_textedit.h ./publish
+    - cp -r imstb_truetype.h ./publish
   artifacts:
     name: imgui
     paths:
-      - ~/imgui
+      - ./publish
