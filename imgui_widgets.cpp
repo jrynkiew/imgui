@@ -1552,7 +1552,7 @@ bool ImGui::SplitterBehavior(const ImRect& bb, ImGuiID id, ImGuiAxis axis, float
     // FIXME: AFAIK the only leftover reason for passing ImGuiButtonFlags_AllowOverlap here is
     // to allow caller of SplitterBehavior() to call SetItemAllowOverlap() after the item.
     // Nowadays we would instead want to use SetNextItemAllowOverlap() before the item.
-    ImGuiButtonFlags button_flags = ImGuiButtonFlags_FlattenChildren;
+    ImGuiButtonFlags button_flags = ImGuiButtonFlags_FlattenChildren | ImGuiButtonFlags_PressedOnClick;
 #ifndef IMGUI_DISABLE_OBSOLETE_FUNCTIONS
     button_flags |= ImGuiButtonFlags_AllowOverlap;
 #endif
