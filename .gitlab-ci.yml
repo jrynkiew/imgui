@@ -31,8 +31,16 @@ build-glfw-windows:
   variables:
     BUILD_TARGET: windows
     GIT_STRATEGY: clone
+    SDL2_CONFIG: /usr/local/cross-tools/x86_64-w64-mingw32/bin/
     OS: Windows_NT
+    PKG_CONFIG_PATH: /usr/local/cross-tools/x86_64-w64-mingw32/lib/pkgconfig
+    CPATH: /usr/local/x86_64-w64-mingw32/include
     MINGW: /mingw64
+    CXX: x86_64-w64-mingw32-g++
+  before_script:
+    - export PATH=$PATH:$SDL2_CONFIG
+    - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
+    - echo "Removed UNAME_S assignment from Makefile"
   tags:
     - windows-runner
   stage: build-glfw
@@ -48,8 +56,16 @@ build-glfw-windows32:
   variables:
     BUILD_TARGET: windows32
     GIT_STRATEGY: clone
+    SDL2_CONFIG: /usr/local/cross-tools/i686-w64-mingw32/bin/
     OS: Windows_NT
+    PKG_CONFIG_PATH: /usr/local/cross-tools/i686-w64-mingw32/lib/pkgconfig
+    CPATH: /usr/local/i686-w64-mingw32/include
     MINGW: /mingw
+    CXX: i686-w64-mingw32-g++
+  before_script:
+    - export PATH=$PATH:$SDL2_CONFIG
+    - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
+    - echo "Removed UNAME_S assignment from Makefile"
   tags:
     - windows32-runner
   stage: build-glfw
