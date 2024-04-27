@@ -31,6 +31,7 @@ build-glfw-windows:
   variables:
     BUILD_TARGET: windows
     GIT_STRATEGY: clone
+    OS: Windows_NT
     MINGW: /mingw64
   tags:
     - windows-runner
@@ -47,6 +48,7 @@ build-glfw-windows32:
   variables:
     BUILD_TARGET: windows32
     GIT_STRATEGY: clone
+    OS: Windows_NT
     MINGW: /mingw
   tags:
     - windows32-runner
