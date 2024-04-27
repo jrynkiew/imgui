@@ -35,11 +35,11 @@ build-glfw-windows:
     PKG_CONFIG_PATH: /mingw64/lib/pkgconfig
     CPATH: /usr/local/x86_64-w64-mingw32/include
     MINGW: /mingw64
-    LIBRARY_PATH: /mingw64/lib
-    LD_LIBRARY_PATH: /mingw64/lib
     CXX: x86_64-w64-mingw32-g++
   before_script:
     - export PATH=$PATH:$MINGW
+    - export LIBRARY_PATH=$LIBRARY_PATH:$MINGW/lib
+    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW/lib
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
     - echo "Removed UNAME_S assignment from Makefile"
   tags:
@@ -61,11 +61,11 @@ build-glfw-windows32:
     PKG_CONFIG_PATH: /mingw64/lib/pkgconfig
     CPATH: /usr/local/i686-w64-mingw32/include
     MINGW: /mingw
-    LIBRARY_PATH: /mingw/lib
-    LD_LIBRARY_PATH: /mingw/lib
     CXX: i686-w64-mingw32-g++
   before_script:
     - export PATH=$PATH:$MINGW
+    - export LIBRARY_PATH=$LIBRARY_PATH:$MINGW/lib
+    - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW/lib
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
     - echo "Removed UNAME_S assignment from Makefile"
   tags:
