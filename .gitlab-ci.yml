@@ -103,6 +103,8 @@ build-sdl2-windows:
   before_script:
     - export PATH=$PATH:$SDL2_CONFIG
     - alias uname='echo Windows_NT'
+    - grep -v "UNAME_S := \$(shell uname -s)" examples/example_sdl2_opengl3/Makefile > examples/example_sdl2_opengl3/temp && mv examples/example_sdl2_opengl3/temp examples/example_sdl2_opengl3/Makefile
+    - echo "Removed UNAME_S assignment from Makefile"
   tags:
     - windows-runner
   stage: build-sdl2
@@ -121,7 +123,8 @@ build-sdl2-windows32:
     MINGW: /mingw
   before_script:
     - export PATH=$PATH:$SDL2_CONFIG
-    - alias uname='echo Windows_NT'
+    - grep -v "UNAME_S := \$(shell uname -s)" examples/example_sdl2_opengl3/Makefile > examples/example_sdl2_opengl3/temp && mv examples/example_sdl2_opengl3/temp examples/example_sdl2_opengl3/Makefile
+    - echo "Removed UNAME_S assignment from Makefile"
   tags:
     - windows32-runner
   stage: build-sdl2
