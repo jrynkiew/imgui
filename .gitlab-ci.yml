@@ -1,8 +1,76 @@
 stages:
-  - build-all
+  - build-sdl2
+  - build-glfw
   - deploy
+  - publish
 
-build-web:
+build-glfw-web:
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - examples/example_glfw_opengl3
+  variables:
+    BUILD_TARGET: web
+    GIT_STRATEGY: clone
+  tags:
+    - web-runner
+  stage: build-glfw
+  script:
+    - cd examples/example_glfw_opengl3
+    - export PWD_WEB=$PWD
+    - cd /build/emsdk/
+    - . ./emsdk_env.sh
+    - cd $PWD_WEB
+    - make -f Makefile.emscripten
+  
+build-glfw-windows:
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - examples/example_glfw_opengl3
+  variables:
+    BUILD_TARGET: windows
+    GIT_STRATEGY: clone
+    MINGW: /mingw64
+  tags:
+    - windows-runner
+  stage: build-glfw
+  script:
+    - cd examples/example_glfw_opengl3
+    - make
+
+build-glfw-windows32:
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - examples/example_glfw_opengl3
+  variables:
+    BUILD_TARGET: windows32
+    GIT_STRATEGY: clone
+    MINGW: /mingw64
+  tags:
+    - windows32-runner
+  stage: build-glfw
+  script:
+    - cd examples/example_glfw_opengl3
+    - make
+
+build-glfw-linux:
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - examples/example_glfw_opengl3
+  variables:
+    BUILD_TARGET: linux
+    GIT_STRATEGY: clone
+  tags:
+    - linux-runner
+  stage: build-glfw
+  script:
+    - cd examples/example_glfw_opengl3
+    - make
+
+build-sdl2-web:
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -12,7 +80,7 @@ build-web:
     GIT_STRATEGY: clone
   tags:
     - web-runner
-  stage: build-all
+  stage: build-sdl2
   script:
     - cd examples/example_sdl2_opengl3
     - export PWD_WEB=$PWD
@@ -21,31 +89,31 @@ build-web:
     - cd $PWD_WEB
     - make -f Makefile.emscripten
   
-build-windows:
+build-sdl2-windows:
   variables:
     BUILD_TARGET: windows
     GIT_STRATEGY: clone
     MINGW: /mingw64
   tags:
     - windows-runner
-  stage: build-all
+  stage: build-sdl2
   script:
-    - cd examples/example_null
+    - cd examples/example_sdl2_opengl3
     - make
 
-build-windows32:
+build-sdl2-windows32:
   variables:
     BUILD_TARGET: windows32
     GIT_STRATEGY: clone
     MINGW: /mingw64
   tags:
     - windows32-runner
-  stage: build-all
+  stage: build-sdl2
   script:
-    - cd examples/example_null
+    - cd examples/example_sdl2_opengl3
     - make
 
-build-linux:
+build-sdl2-linux:
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -55,26 +123,37 @@ build-linux:
     GIT_STRATEGY: clone
   tags:
     - linux-runner
-  stage: build-all
+  stage: build-sdl2
   script:
     - cd examples/example_sdl2_opengl3
     - make
 
-run-web-server:
+deploy-sdl2-web:
   tags:
     - web-server
   stage: deploy
   script:
     - mkdir -p /usr/share/nginx/html/demo
-    - cp examples/example_sdl2_opengl3/web/* /usr/share/nginx/html/demo/
+    - cp examples/example_sdl2_opengl3/web/* /usr/share/nginx/html/sdl2/
   needs:
-    - job: build-web
+    - job: build-sdl2-web
+      artifacts: true
+
+deploy-glfw-web:
+  tags:
+    - web-server
+  stage: deploy
+  script:
+    - mkdir -p /usr/share/nginx/html/demo
+    - cp examples/example_glfw_opengl3/web/* /usr/share/nginx/html/glfw/
+  needs:
+    - job: build-glfw-web
       artifacts: true
 
 publish-source-code:
   tags:
     - linux-runner
-  stage: deploy
+  stage: publish
   script:
     - mkdir -p ./src/backends
     - mkdir -p ./src/imgui
