@@ -143,7 +143,7 @@ deploy-sdl2-web:
     - web-server
   stage: deploy
   script:
-    - mkdir -p /usr/share/nginx/html/demo
+    - mkdir -p /usr/share/nginx/html/sdl2
     - cp examples/example_sdl2_opengl3/web/* /usr/share/nginx/html/sdl2/
   needs:
     - job: build-sdl2-web
