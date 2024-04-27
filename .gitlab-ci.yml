@@ -102,6 +102,7 @@ build-sdl2-windows:
     MINGW: /mingw64
   before_script:
     - export PATH=$PATH:$SDL2_CONFIG
+    - export OS=Windows_NT
   tags:
     - windows-runner
   stage: build-sdl2
@@ -120,6 +121,7 @@ build-sdl2-windows32:
     MINGW: /mingw
   before_script:
     - export PATH=$PATH:$SDL2_CONFIG
+    - export OS=Windows_NT
   tags:
     - windows32-runner
   stage: build-sdl2
