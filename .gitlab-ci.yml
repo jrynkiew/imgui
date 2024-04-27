@@ -40,6 +40,9 @@ build-glfw-windows:
     - export PATH=$PATH:$MINGW:$MINGW/lib
     - export LIBRARY_PATH=$LIBRARY_PATH:$MINGW/lib
     - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW/lib
+    - echo LIBRARY_PATH=$LIBRARY_PATH
+    - echo LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+    - export GCC_EXEC_PREFIX=$MINGW/lib
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
     - echo "Removed UNAME_S assignment from Makefile"
   tags:
