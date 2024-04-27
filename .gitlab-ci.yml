@@ -38,9 +38,10 @@ build-glfw-windows:
     CXX: x86_64-w64-mingw32-g++
   before_script:
     - export PATH=$PATH:$MINGW
-    - ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012 | grep ^SEARCH_DIR | sed 's/^SEARCH_DIR("=\?\([^"]\+\)");/\1/'
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
     - echo "Removed UNAME_S assignment from Makefile"
+    - sed -i 's/^LIBS =$/& -L\/mingw64\/lib/' examples/example_glfw_opengl3/Makefile
+    - echo "Added mingw64 lib path to Makefile"
   tags:
     - windows-runner
   stage: build-glfw
@@ -65,6 +66,8 @@ build-glfw-windows32:
     - export PATH=$PATH:$MINGW
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
     - echo "Removed UNAME_S assignment from Makefile"
+    - sed -i 's/^LIBS =$/& -L\/mingw\/lib/' examples/example_glfw_opengl3/Makefile
+    - echo "Added mingw lib path to Makefile"
   tags:
     - windows32-runner
   stage: build-glfw
