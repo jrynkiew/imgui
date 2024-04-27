@@ -37,7 +37,7 @@ build-glfw-windows:
     MINGW: /mingw64
     CXX: x86_64-w64-mingw32-g++
   before_script:
-    - export PATH=$PATH:$MINGW
+    - export PATH=$PATH:$MINGW:$MINGW/lib
     - export LIBRARY_PATH=$LIBRARY_PATH:$MINGW/lib
     - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW/lib
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
@@ -63,7 +63,7 @@ build-glfw-windows32:
     MINGW: /mingw
     CXX: i686-w64-mingw32-g++
   before_script:
-    - export PATH=$PATH:$MINGW
+    - export PATH=$PATH:$MINGW:$MINGW/lib
     - export LIBRARY_PATH=$LIBRARY_PATH:$MINGW/lib
     - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MINGW/lib
     - grep -v "UNAME_S := \$(shell uname -s)" examples/example_glfw_opengl3/Makefile > examples/example_glfw_opengl3/temp && mv examples/example_glfw_opengl3/temp examples/example_glfw_opengl3/Makefile
