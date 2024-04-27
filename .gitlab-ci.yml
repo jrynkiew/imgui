@@ -154,7 +154,7 @@ deploy-glfw-web:
     - web-server
   stage: deploy
   script:
-    - mkdir -p /usr/share/nginx/html/demo
+    - mkdir -p /usr/share/nginx/html/glfw
     - cp examples/example_glfw_opengl3/web/* /usr/share/nginx/html/glfw/
   needs:
     - job: build-glfw-web
