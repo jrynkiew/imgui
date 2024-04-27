@@ -97,6 +97,7 @@ build-sdl2-windows:
     GIT_STRATEGY: clone
     SDL2_CONFIG: /usr/local/cross-tools/x86_64-w64-mingw32/bin/
     OS: Windows_NT
+    PKG_CONFIG_PATH: /usr/local/cross-tools/x86_64-w64-mingw32/lib/pkgconfig
     MINGW: /mingw64
   before_script:
     - export PATH=$PATH:$SDL2_CONFIG
@@ -111,8 +112,9 @@ build-sdl2-windows32:
   variables:
     BUILD_TARGET: windows32
     GIT_STRATEGY: clone
-    SDL2_CONFIG: /usr/local/cross-tools/x86_64-w64-mingw32/bin/
+    SDL2_CONFIG: /usr/local/cross-tools/i686-w64-mingw32/bin/
     OS: Windows_NT
+    PKG_CONFIG_PATH: /usr/local/cross-tools/i686-w64-mingw32/lib/pkgconfig
     MINGW: /mingw
   before_script:
     - export PATH=$PATH:$SDL2_CONFIG
