@@ -34,7 +34,9 @@ build-glfw-windows:
     OS: Windows_NT
     PKG_CONFIG_PATH: /mingw64/lib/pkgconfig
     CPATH: /usr/local/x86_64-w64-mingw32/include
-    MINGW: /mingw64/lib
+    MINGW: /mingw64
+    LIBRARY_PATH: /mingw64/lib
+    LD_LIBRARY_PATH: /mingw64/lib
     CXX: x86_64-w64-mingw32-g++
   before_script:
     - export PATH=$PATH:$MINGW
@@ -58,7 +60,9 @@ build-glfw-windows32:
     OS: Windows_NT
     PKG_CONFIG_PATH: /mingw64/lib/pkgconfig
     CPATH: /usr/local/i686-w64-mingw32/include
-    MINGW: /mingw/lib
+    MINGW: /mingw
+    LIBRARY_PATH: /mingw/lib
+    LD_LIBRARY_PATH: /mingw/lib
     CXX: i686-w64-mingw32-g++
   before_script:
     - export PATH=$PATH:$MINGW
